@@ -13,15 +13,11 @@ ENV NODE_ENV production
 COPY . .
 COPY --from=deps ./srv/app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
-# Install plugins
-RUN npm run strapi install graphql
 
 # Production image, copy all the files and run app
-FROM strapi/base:alpine AS runner
+FROM builder AS runner
 WORKDIR /srv/app
 ENV NODE_ENV production
-
-COPY --from=builder /srv/app .
 
 VOLUME /srv/app
 
