@@ -1,12 +1,12 @@
 # Install dependencies only when needed
-FROM strapi/base:alpine AS deps
+FROM strapi/strapi:alpine AS deps
 WORKDIR /srv/app
 
 COPY . .
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM strapi/base:alpine AS builder
+FROM strapi/strapi:alpine AS builder
 WORKDIR /srv/app
 ENV NODE_ENV production
 
@@ -17,7 +17,7 @@ RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 RUN strapi install graphql
 
 # Production image, copy all the files and run app
-FROM strapi/base:alpine AS runner
+FROM strapi/strapi:alpine AS runner
 WORKDIR /srv/app
 ENV NODE_ENV production
 
