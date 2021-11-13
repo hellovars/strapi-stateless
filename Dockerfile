@@ -16,6 +16,8 @@ RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run app
 FROM strapi/base:alpine AS runner
+RUN mkdir /srv/app && chown 1000:1000 -R /srv/app
+
 WORKDIR /srv/app
 ENV NODE_ENV production
 
