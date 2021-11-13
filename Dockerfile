@@ -10,7 +10,8 @@ FROM strapi/base:alpine AS builder
 WORKDIR /srv/app
 ENV NODE_ENV production
 
-COPY --from=deps ./node_modules ./node_modules
+COPY . .
+COPY --from=deps ./srv/app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 # Install plugins
 RUN strapi install graphql

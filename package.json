@@ -1,5 +1,5 @@
 {
-  "name": "strapi-docker-stateless",
+  "name": "strapi-stateless",
   "private": true,
   "version": "3.6.8",
   "description": "A stateless Dockerized Strapi application",
