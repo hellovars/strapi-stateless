@@ -15,9 +15,11 @@ COPY --from=deps ./srv/app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run app
-FROM builder AS runner
+FROM strapi/base:alpine AS runner
 WORKDIR /srv/app
 ENV NODE_ENV production
+
+COPY --from=builder /srv/app .
 
 VOLUME /srv/app
 
