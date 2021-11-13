@@ -25,4 +25,4 @@ VOLUME /srv/app
 
 EXPOSE 1337
 
-CMD ["yarn", "start"]
+CMD ["yarn", "develop"]
