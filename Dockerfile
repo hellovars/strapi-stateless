@@ -23,6 +23,8 @@ ENV NODE_ENV production
 
 COPY --from=builder /srv/app ./
 
+VOLUME /srv/app
+
 EXPOSE 1337
 
 CMD ["yarn", "start"]
