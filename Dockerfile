@@ -21,7 +21,7 @@ FROM strapi/base:alpine AS runner
 WORKDIR /srv/app
 ENV NODE_ENV production
 
-COPY --from=builder /srv/app ./
+COPY --from=builder /srv/app .
 
 VOLUME /srv/app
 
